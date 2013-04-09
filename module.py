@@ -3,7 +3,7 @@
 #the full copyright notices and license terms.
 from trytond.model import fields
 from trytond.pool import Pool, PoolMeta
-from trytond.modules import create_graph, get_module_list, get_module_info
+from trytond.modules import get_module_info
 import os
 
 __all__ = ['Module']
