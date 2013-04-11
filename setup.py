@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-#This file is part ir_module_description module for Tryton.
+#This file is part ir_module_info module for Tryton.
 #The COPYRIGHT file at the top level of this repository contains
 #the full copyright notices and license terms.
 
@@ -27,20 +27,20 @@ for dep in info.get('depends', []):
 requires.append('trytond >= %s.%s, < %s.%s' %
         (major_version, minor_version, major_version, minor_version + 1))
 
-setup(name='trytonzz_ir_module_description',
+setup(name='trytonzz_ir_module_info',
     version=info.get('version', '0.0.1'),
     description='Tryton module to add description from doc in modules list',
     author='Zikzakmedia SL',
     author_email='zikzak@zikzakmedia.com',
     url='http://www.zikzakmedia.com',
-    download_url="https://bitbucket.org/trytonspain/trytond-ir_module_description",
-    package_dir={'trytond.modules.ir_module_description': '.'},
+    download_url="https://bitbucket.org/trytonspain/trytond-ir_module_info",
+    package_dir={'trytond.modules.ir_module_info': '.'},
     packages=[
-        'trytond.modules.ir_module_description',
-        'trytond.modules.ir_module_description.tests',
+        'trytond.modules.ir_module_info',
+        'trytond.modules.ir_module_info.tests',
         ],
     package_data={
-        'trytond.modules.ir_module_description': info.get('xml', []) \
+        'trytond.modules.ir_module_info': info.get('xml', []) \
             + ['tryton.cfg', 'locale/*.po'],
         },
     classifiers=[
@@ -64,7 +64,7 @@ setup(name='trytonzz_ir_module_description',
     zip_safe=False,
     entry_points="""
     [trytond.modules]
-    ir_module_description = trytond.modules.ir_module_description
+    ir_module_info = trytond.modules.ir_module_info
     """,
     test_suite='tests',
     test_loader='trytond.test_loader:Loader',

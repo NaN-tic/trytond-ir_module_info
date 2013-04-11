@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-#This file is part ir_module_description module for Tryton.
+#This file is part ir_module_info module for Tryton.
 #The COPYRIGHT file at the top level of this repository contains
 #the full copyright notices and license terms.
 
@@ -23,13 +23,13 @@ class ModuleDescriptionTestCase(unittest.TestCase):
     '''
 
     def setUp(self):
-        trytond.tests.test_tryton.install_module('ir_module_description')
+        trytond.tests.test_tryton.install_module('ir_module_info')
 
     def test0005views(self):
         '''
         Test views.
         '''
-        test_view('ir_module_description')
+        test_view('ir_module_info')
 
     def test0006depends(self):
         '''
