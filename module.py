@@ -1,7 +1,7 @@
 #This file is part ir_module_info module for Tryton.
 #The COPYRIGHT file at the top level of this repository contains
 #the full copyright notices and license terms.
-from trytond.model import fields
+from trytond.model import ModelView, ModelSQL, fields
 from trytond.pool import Pool, PoolMeta
 from trytond.modules import get_module_info
 import os
@@ -19,6 +19,10 @@ __metaclass__ = PoolMeta
 class Module:
     __name__ = "ir.module.module"
     description = fields.Function(fields.Text("Description"), 'get_description')
+    models = fields.Function(fields.One2Many('ir.model', None, 'Models'),
+                'get_models')
+    fields = fields.Function(fields.One2Many('ir.model.field', None, 'Fields'),
+                'get_fields')
 
     @staticmethod
     def read_rst(doc_path):
@@ -98,3 +102,16 @@ class Module:
             return self.read_rst(doc_path)
 
         return description
+
+    def get_models(self, name):
+        if not self.state == 'installed':
+            return
+        Model = Pool().get('ir.model')
+        return [x.id for x in Model.search([('module', '=', self.name)])]
+
+
+    def get_fields(self, name):
+        if not self.state == 'installed':
+            return
+        Field = Pool().get('ir.model.field')
+        return [x.id for x in Field.search([('module', '=', self.name)])]

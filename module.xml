@@ -12,7 +12,16 @@ The COPYRIGHT file at the top level of this repository contains the full copyrig
                     <xpath
                         expr="/form/field[@name='version']"
                         position="after">
-                            <field name="description" colspan="4"/>
+                        <notebook colspan="6">
+                            <page string="Description" id="description" col="6">
+                                <field name="description" colspan="4"/>
+                            </page>
+                            <page string="Extra Information" id="extra" col="6"
+                            states="{'invisible': Not(Equal(Eval('state'), 'installed'))}">
+                                <field name="models"/>
+                                <field name="fields" colspan="2"/>
+                            </page>
+                        </notebook>
                     </xpath>
                 </data>
                 ]]>
