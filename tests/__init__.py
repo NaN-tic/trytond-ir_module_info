@@ -3,3 +3,5 @@
 #the full copyright notices and license terms.
 
 from .test_ir_module_info import suite
+
+__all__ = ['suite']
