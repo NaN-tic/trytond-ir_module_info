@@ -29,8 +29,8 @@ class Module:
         f = open(doc_path, "r")
         description = f.read()
 
-        def rst2html(source, source_path=None, source_class=docutils.io.StringInput,
-                     destination_path=None, reader=None, reader_name='standalone',
+        def rst2html(source, source_path=None, destination_path=None,
+                     reader=None, reader_name='standalone',
                      parser=None, parser_name='restructuredtext', writer=None,
                      writer_name='html', settings=None, settings_spec=None,
                      settings_overrides=None, config_section=None,
@@ -49,7 +49,8 @@ class Module:
             Parameters: see `publish_programmatically`.
             """
             output, pub = docutils.core.publish_programmatically(
-                source=source, source_path=source_path, source_class=source_class,
+                source=source, source_path=source_path,
+                source_class=docutils.io.StringInput,
                 destination_class=docutils.io.StringOutput,
                 destination=None, destination_path=destination_path,
                 reader=reader, reader_name=reader_name,
@@ -59,7 +60,9 @@ class Module:
                 settings_overrides=settings_overrides,
                 config_section=config_section,
                 enable_exit_status=enable_exit_status)
-            return pub.writer.parts['fragment'], pub.document.reporter.max_level, pub.settings.record_dependencies
+            return (pub.writer.parts['fragment'],
+                pub.document.reporter.max_level,
+                pub.settings.record_dependencies)
 
         def remove_tags(text):
             TAG_RE = re.compile(r'<[^>]+>')
