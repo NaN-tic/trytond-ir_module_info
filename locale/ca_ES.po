@@ -1,0 +1,31 @@
+# 
+msgid ""
+msgstr "Content-Type: text/plain; charset=utf-8\n"
+
+msgctxt "field:ir.module.module,description:"
+msgid "Description"
+msgstr "Descripció"
+
+msgctxt "field:ir.module.module,fields:"
+msgid "Fields"
+msgstr "Camps"
+
+msgctxt "field:ir.module.module,menus:"
+msgid "Menus"
+msgstr "Menús"
+
+msgctxt "field:ir.module.module,models:"
+msgid "Models"
+msgstr "Models"
+
+msgctxt "field:ir.module.module,views:"
+msgid "Views"
+msgstr "Vistes"
+
+msgctxt "view:ir.module.module:"
+msgid "Description"
+msgstr "Descripció"
+
+msgctxt "view:ir.module.module:"
+msgid "Extra Information"
+msgstr "Informació extra"
