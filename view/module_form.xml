@@ -4,16 +4,19 @@ The COPYRIGHT file at the top level of this repository contains the full
 copyright notices and license terms. -->
 <data>
     <xpath
-        expr="/form/field[@name='version']"
-        position="after">
+        expr="/form/field[@name='dependencies']"
+        position="replace">
         <notebook colspan="6">
             <page string="Description" id="description" col="6">
                 <field name="description" colspan="4"/>
+                <field name="dependencies" colspan="4"/>
             </page>
             <page string="Extra Information" id="extra" col="6"
             states="{'invisible': Not(Equal(Eval('state'), 'installed'))}">
-                <field name="models"/>
-                <field name="fields" colspan="2"/>
+                <field name="models" colspan="2"/>
+                <field name="fields" colspan="4"/>
+                <field name="menus" colspan="2"/>
+                <field name="views" colspan="4"/>
             </page>
         </notebook>
     </xpath>

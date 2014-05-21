@@ -19,6 +19,10 @@ __metaclass__ = PoolMeta
 class Module:
     __name__ = "ir.module.module"
     description = fields.Function(fields.Text("Description"), 'get_description')
+    views = fields.Function(fields.One2Many('ir.ui.view', None, 'Views'),
+                'get_views')
+    menus = fields.Function(fields.One2Many('ir.ui.menu', None, 'Menus'),
+                'get_menus')
     models = fields.Function(fields.One2Many('ir.model', None, 'Models'),
                 'get_models')
     fields = fields.Function(fields.One2Many('ir.model.field', None, 'Fields'),
@@ -106,12 +110,24 @@ class Module:
 
         return description
 
+    def get_menus(self, name):
+        if not self.state == 'installed':
+            return
+        ModelData = Pool().get('ir.model.data')
+        return [x.db_id for x in ModelData.search([('module', '=', self.name),
+            ('model', '=', 'ir.ui.menu')])]
+
+    def get_views(self, name):
+        if not self.state == 'installed':
+            return
+        View = Pool().get('ir.ui.view')
+        return [x.id for x in View.search([('module', '=', self.name)])]
+
     def get_models(self, name):
         if not self.state == 'installed':
             return
         Model = Pool().get('ir.model')
         return [x.id for x in Model.search([('module', '=', self.name)])]
-
 
     def get_fields(self, name):
         if not self.state == 'installed':
