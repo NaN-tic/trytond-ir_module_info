@@ -11,8 +11,7 @@ copyright notices and license terms. -->
                 <field name="description" colspan="4"/>
                 <field name="dependencies" colspan="4"/>
             </page>
-            <page string="Extra Information" id="extra" col="6"
-            states="{'invisible': Not(Equal(Eval('state'), 'installed'))}">
+            <page string="Extra Information" id="extra" col="6">
                 <field name="models" colspan="2"/>
                 <field name="fields" colspan="4"/>
                 <field name="menus" colspan="2"/>

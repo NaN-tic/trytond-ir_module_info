@@ -3,6 +3,7 @@
 #the full copyright notices and license terms.
 from trytond.model import fields
 from trytond.pool import Pool, PoolMeta
+from trytond.pyson import Not, Eval, Equal
 from trytond.modules import get_module_info
 import os
 import re
@@ -27,6 +28,16 @@ class Module:
                 'get_models')
     fields = fields.Function(fields.One2Many('ir.model.field', None, 'Fields'),
                 'get_fields')
+
+    @classmethod
+    def view_attributes(cls):
+        attributes = super(Module, cls).view_attributes()
+        attributes.append(
+            ('/form/notebook/page[@id="extra"]', 'states', {
+                    'invisible': Not(Equal(Eval('state'), 'installed')),
+                    })
+                )
+        return attributes
 
     @staticmethod
     def read_rst(doc_path):
