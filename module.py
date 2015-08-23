@@ -3,7 +3,7 @@
 #the full copyright notices and license terms.
 from trytond.model import fields
 from trytond.pool import Pool, PoolMeta
-from trytond.pyson import Not, Eval, Equal
+from trytond.pyson import Not, Eval, Equal, If
 from trytond.modules import get_module_info
 import os
 import re
@@ -31,13 +31,17 @@ class Module:
 
     @classmethod
     def view_attributes(cls):
-        attributes = super(Module, cls).view_attributes()
-        attributes.append(
-            ('/form/notebook/page[@id="extra"]', 'states', {
+        return super(Module, cls).view_attributes() + [
+            ('//page[@id="extra"]', 'states', {
                     'invisible': Not(Equal(Eval('state'), 'installed')),
-                    })
-                )
-        return attributes
+                    }),
+            ('/tree', 'colors',
+                If(Eval('state').in_(['to upgrade', 'to install']),
+                    'blue',
+                    If(Eval('state') == 'uninstalled',
+                        'grey',
+                        'black')))
+                    ]
 
     @staticmethod
     def read_rst(doc_path):
