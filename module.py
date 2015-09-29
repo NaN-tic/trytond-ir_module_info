@@ -18,7 +18,7 @@ __metaclass__ = PoolMeta
 
 
 class Module:
-    __name__ = "ir.module.module"
+    __name__ = "ir.module"
     description = fields.Function(fields.Text("Description"), 'get_description')
     views = fields.Function(fields.One2Many('ir.ui.view', None, 'Views'),
                 'get_views')
