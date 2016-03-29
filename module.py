@@ -14,10 +14,10 @@ except ImportError:
     has_docutils = False
 
 __all__ = ['Module']
-__metaclass__ = PoolMeta
 
 
 class Module:
+    __metaclass__ = PoolMeta
     __name__ = "ir.module"
     description = fields.Function(fields.Text("Description"), 'get_description')
     views = fields.Function(fields.One2Many('ir.ui.view', None, 'Views'),
