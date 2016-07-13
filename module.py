@@ -127,25 +127,25 @@ class Module:
 
     def get_menus(self, name):
         if not self.state == 'installed':
-            return
+            return []
         ModelData = Pool().get('ir.model.data')
         return [x.db_id for x in ModelData.search([('module', '=', self.name),
             ('model', '=', 'ir.ui.menu')])]
 
     def get_views(self, name):
         if not self.state == 'installed':
-            return
+            return []
         View = Pool().get('ir.ui.view')
         return [x.id for x in View.search([('module', '=', self.name)])]
 
     def get_models(self, name):
         if not self.state == 'installed':
-            return
+            return []
         Model = Pool().get('ir.model')
         return [x.id for x in Model.search([('module', '=', self.name)])]
 
     def get_fields(self, name):
         if not self.state == 'installed':
-            return
+            return []
         Field = Pool().get('ir.model.field')
         return [x.id for x in Field.search([('module', '=', self.name)])]
